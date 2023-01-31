@@ -60,5 +60,68 @@ namespace AddressBookSystem
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
         }
+        //UC3-Edit existing contact person using their name.
+        public static void EditPersonDetails()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter First Name: ");
+            string fName = Console.ReadLine();
+            Console.WriteLine("Enter First Name: ");
+            string lName = Console.ReadLine();
+            foreach (var data in Person)
+            {
+                if (Person.Contains(data))
+                {
+                    if (data.firstName.Equals(fName) || data.lastName.Equals(lName))
+                    {
+                        Console.WriteLine("Please select option whivh you want to edit :-- \n 1.FirstName and LastName\n 2.Address\n 3.City\n 4.State\n 5.Zipcode\n 6.PhoneNumber\n");
+                        int option = Convert.ToInt32(Console.ReadLine());
+                        switch (option)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter New First Name : ");
+                                string firstName = Console.ReadLine();
+                                data.firstName = firstName;
+                                Console.WriteLine("Enter New Last Name : ");
+                                string lastName = Console.ReadLine();
+                                data.lastName = lastName;
+                                break;
+                            case 2:
+                                Console.WriteLine("Enter New Address : ");
+                                string address = Console.ReadLine();
+                                data.address = address;
+                                break;
+                            case 3:
+                                Console.WriteLine("Enter City : ");
+                                string city = Console.ReadLine();
+                                data.city = city;
+                                break;
+                            case 4:
+                                Console.WriteLine("Enter New State : ");
+                                string state = Console.ReadLine();
+                                data.state = state;
+                                break;
+                            case 5:
+                                Console.WriteLine("Enter New Zip Code : ");
+                                int zipCode = Convert.ToInt32(Console.ReadLine());
+                                data.zipcode = zipCode;
+                                break;
+                            case 6:
+                                Console.WriteLine("Enter New Phone Number : ");
+                                int phonenumber = Convert.ToInt32(Console.ReadLine());
+                                data.phoneNumber = phonenumber;
+                                break;
+                            default:
+                                Console.WriteLine("Select Valid option ");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Name does not match");
+                    }
+                }
+            }
+        }
     }
 }
