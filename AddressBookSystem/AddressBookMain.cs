@@ -14,7 +14,7 @@ namespace AddressBookSystem
         public static void AddContacts() 
         {
             Console.Clear();
-            Contacts contact= new Contacts();
+            Contacts contact = new Contacts();
             Console.Write("Please enter first name:   ");
             contact.firstName = Console.ReadLine();
             Console.Write("Please enter last name:   ");
@@ -28,7 +28,7 @@ namespace AddressBookSystem
             Console.Write("Please enter zip code:   ");
             contact.zipcode=Convert.ToInt32(Console.ReadLine());
             Console.Write("Please enter phone number: ");
-            contact.phoneNumber= Convert.ToDouble(Console.ReadLine());
+            contact.phoneNumber= Convert.ToInt64(Console.ReadLine());
             Console.Write("Please enter email id:  ");
             contact.email = Console.ReadLine();
             Person.Add(contact);
@@ -64,9 +64,9 @@ namespace AddressBookSystem
         public static void EditPersonDetails()
         {
             Console.Clear();
-            Console.WriteLine("Enter First Name: ");
+            Console.WriteLine("Enter First Name of the person you want to edit: ");
             string fName = Console.ReadLine();
-            Console.WriteLine("Enter First Name: ");
+            Console.WriteLine("Enter Last Name of the person you want to edit: ");
             string lName = Console.ReadLine();
             foreach (var data in Person)
             {
@@ -119,7 +119,25 @@ namespace AddressBookSystem
                     else
                     {
                         Console.WriteLine("Name does not match");
+                        Console.ReadLine();
                     }
+                }
+            }
+        }
+        //UC4-Delete a person using person's name
+        public static void DeletePersonByUsingPersonName()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter the first name of that person you want to remove: ");
+            string fName = Console.ReadLine();
+            foreach (var data in Person)
+            {
+                if (data.firstName.ToLower() == fName.ToLower())
+                {
+                    Person.Remove(data);
+                    Console.WriteLine("{0} is deleted sucessfully from the AddressBook\nPress any key to continue", data.firstName);
+                    Console.ReadLine();
+                    return;
                 }
             }
         }
