@@ -10,7 +10,6 @@ namespace AddressBookSystem
     public class AddressBookMain
     {
         public static List<Contacts> Person = new List<Contacts>();
-        public static Dictionary<string, List<Contacts>> dictionarybook = new Dictionary<string, List<Contacts>>();
         //UC2- Add Contact to Address Book
         public static void AddContacts()
         {
