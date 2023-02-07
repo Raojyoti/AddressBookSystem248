@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace AddressBookSystem
 {
     public class AddressBookMain
     {
         public static List<Contacts> Person = new List<Contacts>();
+        public static Dictionary<string, List<Contacts>> dictionarybook = new Dictionary<string, List<Contacts>>();
         //UC2- Add Contact to Address Book
         public static void AddContacts()
         {
@@ -153,5 +155,52 @@ namespace AddressBookSystem
                 numberPerson--;
             }
         }
+        //UC6- Refactor to add multiple Address Book to the System.Each Address Book has a unique Name
+        public static void CreateDictionaryContacts()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter name which you want to give their new address book");
+            string name = Console.ReadLine();//key 
+            Console.WriteLine("Please enter number of person add in Contact");
+            int numberPerson = Convert.ToInt32(Console.ReadLine());
+            while (numberPerson > 0)
+            {
+                AddContacts();
+                numberPerson--;
+            }
+            dictionarybook.Add(name, Person.ToList());
+        }
+        public static void DisplayDictionaryList()
+        {
+            Console.Clear();
+            if (Person.Count == 0)
+            {
+                Console.WriteLine("**********----Your address book is empty----*********.\n Press any key to continue.");
+                Console.ReadKey();
+                return;
+            }
+            Console.WriteLine("Here are the current people in your address book:\n----------------------------------------------");
+            foreach (var data in dictionarybook)
+            {
+                Console.WriteLine(data.Key);//printing dictionary keys
+                Console.WriteLine("-------------------------------------------");
+                foreach (var item in data.Value)//printing dictionary values
+                {
+                    Console.WriteLine("First Name: " + item.firstName);
+                    Console.WriteLine("Last Name: " + item.lastName);
+                    Console.WriteLine("City Name: " + item.city);
+                    Console.WriteLine("Address : " + item.address);
+                    Console.WriteLine("State : " + item.state);
+                    Console.WriteLine("Zip Code : " + item.zipcode);
+                    Console.WriteLine("Phone Number: " + item.phoneNumber);
+                    Console.WriteLine("Email Id : " + item.email);
+                    Console.WriteLine("-------------------------------------------");
+                }
+            }
+            Console.WriteLine("Press any key to continue.");
+            Console.ReadKey();
+        }
+
+
     }
 }
