@@ -10,8 +10,9 @@ namespace AddressBookSystem
     public class AddressBookMain
     {
         public static List<Contacts> Person = new List<Contacts>();
+        public static Dictionary<string, List<Contacts>> dictionarybook = new Dictionary<string, List<Contacts>>();
         //UC2- Add Contact to Address Book
-        public static void AddContacts() 
+        public static void AddContacts()
         {
             Console.Clear();
             Contacts contact = new Contacts();
@@ -26,9 +27,9 @@ namespace AddressBookSystem
             Console.Write("Please enter state name:   ");
             contact.state = Console.ReadLine();
             Console.Write("Please enter zip code:   ");
-            contact.zipcode=Convert.ToInt32(Console.ReadLine());
+            contact.zipcode = Convert.ToInt32(Console.ReadLine());
             Console.Write("Please enter phone number: ");
-            contact.phoneNumber= Convert.ToInt64(Console.ReadLine());
+            contact.phoneNumber = Convert.ToInt64(Console.ReadLine());
             Console.Write("Please enter email id:  ");
             contact.email = Console.ReadLine();
             Person.Add(contact);
@@ -139,6 +140,18 @@ namespace AddressBookSystem
                     Console.ReadLine();
                     return;
                 }
+            }
+        }
+        //UC5- Ability to add multiple person to Address Book.
+        public static void AddMultiplePerson()
+        {
+            Console.Clear();
+            Console.WriteLine("Please enter number of person add in Contact");
+            int numberPerson=Convert.ToInt32(Console.ReadLine());
+            while (numberPerson > 0)
+            {
+                AddContacts();
+                numberPerson--;
             }
         }
     }

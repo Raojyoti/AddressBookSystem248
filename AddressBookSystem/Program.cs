@@ -10,7 +10,7 @@
             while (flag)
             {
                 Console.WriteLine("Please select given options:---\n--------------------");
-                Console.WriteLine("1.AddContacts\n2.DisplayDetails\n3.EditPersonDetails\n4.DeletePersonByUsingPersonName\n17.Exit\n");
+                Console.WriteLine("1.AddContacts\n2.DisplayDetails\n3.EditPersonDetails\n4.DeletePersonByUsingPersonName\n5.AddMultiplePerson\n17.Exit\n");
                 int option=Convert.ToInt32(Console.ReadLine());
                 switch(option)
                 {
@@ -28,6 +28,10 @@
                         break;
                     case 4:
                         AddressBookMain.DeletePersonByUsingPersonName();
+                        Console.Clear();
+                        break;
+                    case 5:
+                        AddressBookMain.AddMultiplePerson();
                         Console.Clear();
                         break;
                     case 17:
