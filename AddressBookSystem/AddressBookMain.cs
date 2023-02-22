@@ -35,7 +35,7 @@ namespace AddressBookSystem
             contact.email = Console.ReadLine();
             Person.Add(contact);
             Console.WriteLine("\nPress any key to continue.");
-            Console.ReadKey();
+            Console.ReadLine();
         }
         public static void DisplayDetails()
         {
@@ -74,7 +74,7 @@ namespace AddressBookSystem
             {
                 if (Person.Contains(data))
                 {
-                    if (data.firstName.Equals(fName) || data.lastName.Equals(lName))
+                    if (data.firstName.ToLower().Equals(fName.ToLower()) || data.lastName.ToLower().Equals(lName.ToLower()))
                     {
                         Console.WriteLine("Please select option whivh you want to edit :-- \n 1.FirstName and LastName\n 2.Address\n 3.City\n 4.State\n 5.Zipcode\n 6.PhoneNumber\n");
                         int option = Convert.ToInt32(Console.ReadLine());
@@ -199,6 +199,35 @@ namespace AddressBookSystem
             }
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
+        }
+        //UC7- Ability to ensure there is no duplicate Entry of the same Person in Address Book.
+        public static List<Contacts> FindPersonByName()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter person first name:");
+            string fName = Console.ReadLine();
+            Console.WriteLine("Enter person last name:");
+            string lName = Console.ReadLine();
+            return Person.Where(x => x.firstName.ToLower() == fName.ToLower() && x.lastName.ToLower() == lName.ToLower()).ToList();
+        }
+        public static void CheckDuplicateEntryOfSamePersonByName()
+        {
+            List<Contacts> contacts = FindPersonByName();
+            if (Person.Count == 0)
+            {
+                Console.WriteLine("That person could not be Present in Address Book");
+                Console.WriteLine("Now we add that person details in Address Book\nfirst press enter and start adding details of that person");
+                Console.ReadLine();
+                AddContacts();
+                return;
+            }
+            if (Person.Count == 1)
+            {
+                Console.WriteLine("That Person is Present in Address Book\nSo you want to see all details of that person\nJust press enter");
+                Console.ReadLine();
+                DisplayDetails();
+                return;
+            }
         }
     }
 }
