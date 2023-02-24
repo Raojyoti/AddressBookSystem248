@@ -12,7 +12,9 @@ namespace AddressBookSystem
     {
         public static List<Contacts> Person = new List<Contacts>();
         public static Dictionary<string, List<Contacts>> dictionarybook = new Dictionary<string, List<Contacts>>();
-        //UC2- Add Contact to Address Book
+        /// <summary>
+        /// UC2- Add Contact to Address Book
+        /// </summary>
         public static void AddContacts()
         {
             Console.Clear();
@@ -62,7 +64,9 @@ namespace AddressBookSystem
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
         }
-        //UC3-Edit existing contact person using their name.
+        /// <summary>
+        /// UC3-Edit existing contact person using their name.
+        /// </summary>
         public static void EditPersonDetails()
         {
             Console.Clear();
@@ -126,7 +130,9 @@ namespace AddressBookSystem
                 }
             }
         }
-        //UC4-Delete a person using person's name
+        /// <summary>
+        /// UC4-Delete a person using person's name
+        /// </summary>
         public static void DeletePersonByUsingPersonName()
         {
             Console.Clear();
@@ -143,19 +149,23 @@ namespace AddressBookSystem
                 }
             }
         }
-        //UC5- Ability to add multiple person to Address Book.
+        /// <summary>
+        /// UC5- Ability to add multiple person to Address Book.
+        /// </summary>
         public static void AddMultiplePerson()
         {
             Console.Clear();
             Console.WriteLine("Please enter number of person add in Contact");
-            int numberPerson=Convert.ToInt32(Console.ReadLine());
+            int numberPerson = Convert.ToInt32(Console.ReadLine());
             while (numberPerson > 0)
             {
                 AddContacts();
                 numberPerson--;
             }
         }
-        //UC6- Refactor to add multiple Address Book to the System.Each Address Book has a unique Name
+        /// <summary>
+        /// UC6- Refactor to add multiple Address Book to the System.Each Address Book has a unique Name
+        /// </summary>
         public static void CreateDictionaryContacts()
         {
             Console.Clear();
@@ -176,7 +186,7 @@ namespace AddressBookSystem
             if (Person.Count == 0)
             {
                 Console.WriteLine("**********----Your address book is empty----*********.\n Press any key to continue.");
-                Console.ReadKey();
+                Console.ReadLine();
                 return;
             }
             Console.WriteLine("Here are the current people in your address book:\n----------------------------------------------");
@@ -198,35 +208,27 @@ namespace AddressBookSystem
                 }
             }
             Console.WriteLine("Press any key to continue.");
-            Console.ReadKey();
+            Console.ReadLine();
         }
-        //UC7- Ability to ensure there is no duplicate Entry of the same Person in Address Book.
-        public static List<Contacts> FindPersonByName()
-        {
-            Console.Clear();
-            Console.WriteLine("Enter person first name:");
-            string fName = Console.ReadLine();
-            Console.WriteLine("Enter person last name:");
-            string lName = Console.ReadLine();
-            return Person.Where(x => x.firstName.ToLower() == fName.ToLower() && x.lastName.ToLower() == lName.ToLower()).ToList();
-        }
+        /// <summary>
+        /// UC7- Ability to ensure there is no duplicate Entry of the same Person in Address Book.
+        /// </summary>
         public static void CheckDuplicateEntryOfSamePersonByName()
         {
-            List<Contacts> contacts = FindPersonByName();
-            if (Person.Count == 0)
+            Console.Clear();
+            Console.WriteLine("Enter first name to which you want to  check duplicate entry ");
+            string name = Console.ReadLine();
+            bool check = Person.Any(s => s.firstName.ToLower() == name.ToLower());
+            if (check)
             {
-                Console.WriteLine("That person could not be Present in Address Book");
-                Console.WriteLine("Now we add that person details in Address Book\nfirst press enter and start adding details of that person");
+                Console.WriteLine("contact Exists");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("In address book ==> {0} is not present \n So we add this person in contact\n just press enter and fill all details..");
                 Console.ReadLine();
                 AddContacts();
-                return;
-            }
-            if (Person.Count == 1)
-            {
-                Console.WriteLine("That Person is Present in Address Book\nSo you want to see all details of that person\nJust press enter");
-                Console.ReadLine();
-                DisplayDetails();
-                return;
             }
         }
     }

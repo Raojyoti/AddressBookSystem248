@@ -1,10 +1,13 @@
-﻿namespace AddressBookSystem
+﻿using System;
+
+namespace AddressBookSystem
 {
     public class Program
     {
         static void Main(string[] args)
         {
             Console.Clear();
+            List<Contacts> Person = new List<Contacts>();
             Console.WriteLine("*****----Welcome to Address Book Program----*****\n");
             bool flag = true;
             while (flag)
@@ -17,7 +20,7 @@
                     "5.AddMultiplePerson\n" +
                     "6.CreateDictionaryContacts\n" +
                     "7.DisplayDictionaryList\n" +
-                    "8.CheckDuplicateEntryOfSamePersonByPersonName\n" +
+                    "8.CheckDuplicateEntryOfSamePersonByPersonNameInList\n" +
                     "17.Exit\n");
                 int option=Convert.ToInt32(Console.ReadLine());
                 switch(option)
