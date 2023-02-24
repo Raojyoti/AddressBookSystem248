@@ -286,5 +286,60 @@ namespace AddressBookSystem
             }
             Console.ReadLine();
         }
+        /// <summary>
+        /// UC9- Ability to View Person by City or State.
+        /// </summary>
+        public static void ViewPersonByCityOrState()
+        {
+            Console.Clear();
+            Console.WriteLine("First select options:--");
+            Console.WriteLine("1.View Person In City\n2.View Person In State\n");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Enter that City name where want to view the person name ");
+                    string cityName = Console.ReadLine();
+                    foreach (var pair in dictionarybook.Keys)
+                    {
+                        Console.WriteLine("Address Book Name: " + pair);
+                        Console.WriteLine("The Contact Details of {0} are:\n--------------------------", cityName);
+                        foreach (Contacts data in Person.FindAll(s => s.city.ToLower() == cityName.ToLower()).ToList())
+                        {
+                            Console.WriteLine("\nFirstName: " + data.firstName + " " +
+                                "\nLastName: " + data.lastName + " " +
+                                "\nZipcode: " + data.zipcode + " " +
+                                "\nAddress: " + data.address + " " +
+                                "\nStateName: " + data.state + " " +
+                                "\nPhoneNumber: " + data.phoneNumber);
+                            Console.Write("-------------------------------------------");
+                        }
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Enter that State name where want to view the person name ");
+                    string stateName = Console.ReadLine();
+                    foreach (var pair in dictionarybook.Keys)
+                    {
+                        Console.WriteLine("Address Book Name: " + pair);
+                        Console.WriteLine("The Contact Details of {0} are:\n--------------------------", stateName);
+                        foreach (Contacts data in Person.FindAll(s => s.state.ToLower() == stateName.ToLower()).ToList())
+                        {
+                            Console.WriteLine("\nFirstName: " + data.firstName + " " +
+                                "\nLastName: " + data.lastName + " " +
+                                "\nZipcode: " + data.zipcode + " " +
+                                "\nAddress: " + data.address + " " +
+                                "\nStateName: " + data.state + " " +
+                                "\nPhoneNumber: " + data.phoneNumber);
+                            Console.Write("-------------------------------------------");
+                        }
+                    }
+                    break;
+                default:
+                    Console.WriteLine("select only valid options");
+                    break;
+            }
+            Console.ReadLine();
+        }
     }
 }
