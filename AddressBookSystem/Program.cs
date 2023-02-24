@@ -21,8 +21,9 @@ namespace AddressBookSystem
                     "6.CreateDictionaryContacts\n" +
                     "7.DisplayDictionaryList\n" +
                     "8.CheckDuplicateEntryOfSamePersonByPersonNameInList\n" +
-                    "10.ViewPersonByCityOrStateInDictionaryAB\n" +
                     "9.SearchPersonByCityOrStateInDictionaryAB\n" +
+                    "10.ViewPersonByCityOrStateInDictionaryAB\n" +
+                    "11.GetNumberOfContactPersonsThatIsCounrByCityOrStateInList\n" +
                     "17.Exit\n");
                 int option=Convert.ToInt32(Console.ReadLine());
                 switch(option)
@@ -65,6 +66,10 @@ namespace AddressBookSystem
                         break;
                     case 10:
                         AddressBookMain.ViewPersonByCityOrState();
+                        Console.Clear();
+                        break;
+                    case 11:
+                        AddressBookMain.CountCityOrState();
                         Console.Clear();
                         break;
                     case 17:

@@ -341,5 +341,40 @@ namespace AddressBookSystem
             }
             Console.ReadLine();
         }
+        /// <summary>
+        /// UC10- Ability to get number of contact persons i.e. count by City or State.
+        /// </summary>
+        public static void CountCityOrState()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter the CityOrState name that want to count ");
+            string cityOrState = Console.ReadLine();
+            foreach (var data in Person)
+            {
+                if (Person.Contains(data))
+                {
+                    if (data.city.ToLower() == cityOrState.ToLower())
+                    {
+                        var values = Person.Count(x => x.city.ToLower() == cityOrState.ToLower());
+                        Console.WriteLine("In {0} total number of person: {1}", cityOrState, values);
+                        Console.ReadLine();
+                        return;
+                    }
+                    else
+                    {
+                        if (data.state == cityOrState)
+                        {
+                            var values = Person.Count(x => x.state.ToLower() == cityOrState.ToLower());
+                            Console.WriteLine("In {0} total number of person: {1}", cityOrState, values);
+                            Console.ReadLine();
+                            return;
+                        }
+                    }
+                    Console.WriteLine("In {0} no person is present", cityOrState);
+                    //Console.ReadLine();
+                    return;
+                }
+            }
+        }
     }
 }
