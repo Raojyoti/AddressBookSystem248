@@ -425,5 +425,26 @@ namespace AddressBookSystem
             }
             Console.ReadLine();
         }
+        /// <summary>
+        /// UC13- Read or Write the Address Book with Persons Contact into a File using File IO
+        /// </summary>
+        public static void ReadWritePersonContactsByUsingFileIO()
+        {
+            //Write in  file
+            Console.Clear();
+            string filePath = @"E:\AddressBookSystem248\AddressBookSystem248\AddressBookSystem\PersonDetails.txt";
+            StreamWriter writer = new StreamWriter(filePath);
+            foreach (var data in Person)
+            {
+                writer.WriteLine("FirstName: " + data.firstName + "    " + "\nLastName: " + data.lastName + "    " + "\nAddress: " + data.address + "    " + "\nCityName: " + data.city + "    " + "\nStateName: " + data.state + "    " + "\nZipCode: " + data.zipcode + "    " + "\nPhoneNumber: " + data.phoneNumber + "    " + "\nEmailId: " + data.email + "\n------------------------------------");
+            }
+            writer.Close();
+            //Read from file
+            StreamReader reader = new StreamReader(filePath);
+            Console.WriteLine(reader.ReadToEnd());
+            Console.ReadLine();
+            Console.WriteLine("Press any key to continue.");
+            reader.Close();
+        }
     }
 }

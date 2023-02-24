@@ -1,0 +1,27 @@
+FirstName: Rahul     
+LastName: Roy     
+Address: Preet vihar colony     
+CityName: Khurja    
+StateName: UP    
+ZipCode: 147852    
+PhoneNumber: 7804982525    
+EmailId: aman58@gmail.com
+------------------------------------
+FirstName: Riya    
+LastName: Sharma    
+Address: Near fire station    
+CityName: Agra    
+StateName: UP    
+ZipCode: 987456    
+PhoneNumber: 9836026528    
+EmailId: riya25@gmail.com
+------------------------------------
+FirstName: Amit    
+LastName: Singh    
+Address: New teshil, house 147    
+CityName: Noida    
+StateName: UP    
+ZipCode: 951753    
+PhoneNumber: 9803652598    
+EmailId: amit25@gmail.com
+------------------------------------
