@@ -376,5 +376,25 @@ namespace AddressBookSystem
                 }
             }
         }
+        /// <summary>
+        /// UC11- sort the entries in the address book alphabetically by Person’s name'
+        /// </summary>
+        public static void SortPersonsName()
+        {
+            Console.Clear();
+            var values = Person.OrderBy(x => x.firstName.ToLower()).ToList();
+            Console.WriteLine("Sort person name in alphabetically");
+            Console.WriteLine("-------------------------------------");
+            foreach (var result in values)
+            {
+                Console.WriteLine("FirstName:" + result.firstName + "   " +
+                               "LastName: " + result.lastName + "   " +
+                                "Zipcode: " + result.zipcode + "   " +
+                                "Address: " + result.address + "   " +
+                                "StateName: " + result.state + "   " +
+                                "PhoneNumber: " + result.phoneNumber);
+            }
+            Console.ReadLine();
+        }
     }
 }
