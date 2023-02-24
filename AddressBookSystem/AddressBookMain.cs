@@ -396,5 +396,34 @@ namespace AddressBookSystem
             }
             Console.ReadLine();
         }
+        /// <summary>
+        /// UC12- Sort the person in the address book by City, State, or Zip.
+        /// </summary>
+        public static void SortPersonByCityStateOrZip()
+        {
+            Console.Clear();
+            var citysort = Person.OrderBy(x => x.city.ToLower()).ToList();
+            var statesort = Person.OrderBy(x => x.state.ToLower()).ToList();
+            var zipcodesort = Person.OrderBy(x => x.zipcode).ToList();
+            Console.WriteLine("Sort person name by city name");
+            Console.WriteLine("--------------------------------------");
+            foreach (var result in citysort)
+            {
+                Console.WriteLine("CityName:" + result.city + "    " + "FirstName:" + result.firstName);
+            }
+            Console.WriteLine("Sort person name by state name");
+            Console.WriteLine("-----------------------------------");
+            foreach (var result in statesort)
+            {
+                Console.WriteLine("StateName:" + result.state + "    " + "FirstName" + result.firstName);
+            }
+            Console.WriteLine("Sort person name by zipcoad");
+            Console.WriteLine("----------------------------------");
+            foreach (var result in zipcodesort)
+            {
+                Console.WriteLine("ZipCode:" + result.zipcode + "     " + "FirstName:" + result.firstName);
+            }
+            Console.ReadLine();
+        }
     }
 }
