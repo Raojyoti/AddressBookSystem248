@@ -231,5 +231,60 @@ namespace AddressBookSystem
                 AddContacts();
             }
         }
+        /// <summary>
+        /// UC8- Ability to search Person in a City or State across the multiple AddressBook.
+        /// </summary>
+        public static void SearchPersonByCityOrState()
+        {
+            Console.Clear();
+            Console.WriteLine("First select options:--");
+            Console.WriteLine("1.Search Person In City\n2.Search Person In State\n");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Enter that City name where want to search the person name ");
+                    string cityName = Console.ReadLine();
+                    Console.WriteLine("Enter person name that you want to search in City ");
+                    string cityPersonName = Console.ReadLine();
+                    foreach (var pair in dictionarybook.Keys)
+                    {
+                        Console.WriteLine("Address Book Name: " + pair);
+                        foreach (var data in Person.FindAll(e => e.city.ToLower() == cityName.ToLower() && e.firstName.ToLower() == cityPersonName.ToLower()).ToList())
+                        {
+                            Console.WriteLine("The Contact Details of " + data.city + " are:\n--------------------------" + "\nFirstName: " + data.firstName + " " + "\nLastName: " + data.lastName + " " + "\nZipcode: " + data.zipcode + " " + "\nPhoneNumber: " + data.phoneNumber);
+                            Console.WriteLine("\nPress any key to continue....");
+                            return;
+                        }
+                    }
+                    Console.WriteLine("Person With Name ==> {0} is not found in the AddressBook in City ==> {1}", cityPersonName, cityName);
+                    Console.WriteLine("\nPress any key to continue.....");
+                    Console.ReadLine();
+                    break;
+                case 2:
+                    Console.WriteLine("Enter that State name where want to search the person name ");
+                    string stateName = Console.ReadLine();
+                    Console.WriteLine("Enter person name that you want to search in State ");
+                    string statePersonName = Console.ReadLine();
+                    foreach (var pair in dictionarybook.Keys)
+                    {
+                        Console.WriteLine("Address Book Name " + pair);
+                        foreach (var data in Person.FindAll(e => e.state.ToLower() == stateName.ToLower() && e.firstName.ToLower() == statePersonName.ToLower()).ToList())
+                        {
+                            Console.WriteLine("The Contact Details of " + data.state + " are:\n-------------------------" + "\nFirstName: " + data.firstName + " " + "\nLastName: " + data.lastName + " " + "\nZipcode: " + data.zipcode + " " + "\nPhoneNumber: " + data.phoneNumber);
+                            Console.WriteLine("\nPress any key to continue....");
+                            return;
+                        }
+                    }
+                    Console.WriteLine("Person With Name ==> {0} is not found in the AddressBook in State ==> {1}", statePersonName, stateName);
+                    Console.WriteLine("\nPress any key to continue.....");
+                    Console.ReadLine();
+                    break;
+                default:
+                    Console.WriteLine("select only valid options");
+                    break;
+            }
+            Console.ReadLine();
+        }
     }
 }
