@@ -1,12 +1,22 @@
 [
   {
-    "firstName": "Jyot",
-    "lastName": "rao",
-    "address": "ss",
-    "city": "ss",
-    "state": "s",
-    "zipcode": 55,
-    "phoneNumber": 55,
-    "email": "ss"
+    "firstName": "Anmol",
+    "lastName": "Roy",
+    "address": "Vijay nagar colony ",
+    "city": "Noida",
+    "state": "Uttar Pradesh ",
+    "zipcode": 203131,
+    "phoneNumber": 7805982525,
+    "email": "anmol15@gmail.com"
+  },
+  {
+    "firstName": "Riya",
+    "lastName": "Sharma",
+    "address": "Murari nagar ",
+    "city": "Khurja",
+    "state": "Uttar Pradesh ",
+    "zipcode": 215487,
+    "phoneNumber": 7805982524,
+    "email": "riya147@gmail.com"
   }
 ]
