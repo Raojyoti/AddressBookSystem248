@@ -123,5 +123,101 @@ namespace AddressBookSystem
                 sqlConnection.Close();
             }
         }
+
+        /// <summary>
+        /// UC19-Retrieve contact by city or state
+        /// </summary>
+        /// <param name="model"></param>
+        public static void RetrieveByCityOrState(Contacts model)
+        {
+            Console.WriteLine("1.RetrieveByCity\n" +
+                    "2.RetrieveByState\n");
+            int option = Convert.ToInt32(Console.ReadLine());
+            switch (option)
+            {
+                case 1:
+                    try
+                    {
+                        int count = 0;
+                        sqlConnection = new SqlConnection(connectionString);
+                        string query = "select * from AddressBook  where City='Ghaziabad' ";
+                        SqlCommand cmd = new SqlCommand(query, sqlConnection);
+                        sqlConnection.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                model.firstName = reader["firstName"] == DBNull.Value ? default : reader["firstName"].ToString();
+                                model.lastName = reader["lastName"] == DBNull.Value ? default : reader["lastName"].ToString();
+                                model.address = reader["address"] == DBNull.Value ? default : reader["address"].ToString();
+                                model.city = reader["city"] == DBNull.Value ? default : reader["city"].ToString();
+                                model.state = reader["state"] == DBNull.Value ? default : reader["state"].ToString();
+                                model.zipcode = Convert.ToInt32(reader["zipcode"] == DBNull.Value ? default : reader["zipcode"]);
+                                model.phoneNumber = Convert.ToInt64(reader["phoneNumber"] == DBNull.Value ? default : reader["phoneNumber"]);
+                                model.email = reader["email"] == DBNull.Value ? default : reader["email"].ToString();
+                                Console.WriteLine("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}", model.firstName, model.lastName, model.address, model.city, model.state, model.zipcode, model.phoneNumber, model.email);
+                                count++;
+                            }
+                            Console.WriteLine("\nNumber of contacts present in \"{0}\" city => {1}", model.city, count);
+                            Console.Write("\nPress any key to continue...... ");
+                            Console.ReadLine();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
+                    Console.Clear();
+                    break;
+                case 2:
+                    try
+                    {
+                        int count = 0;
+                        sqlConnection = new SqlConnection(connectionString);
+                        string query = "select * from AddressBook  where State='UP' ";
+                        SqlCommand cmd = new SqlCommand(query, sqlConnection);
+                        sqlConnection.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                model.firstName = reader["firstName"] == DBNull.Value ? default : reader["firstName"].ToString();
+                                model.lastName = reader["lastName"] == DBNull.Value ? default : reader["lastName"].ToString();
+                                model.address = reader["address"] == DBNull.Value ? default : reader["address"].ToString();
+                                model.city = reader["city"] == DBNull.Value ? default : reader["city"].ToString();
+                                model.state = reader["state"] == DBNull.Value ? default : reader["state"].ToString();
+                                model.zipcode = Convert.ToInt32(reader["zipcode"] == DBNull.Value ? default : reader["zipcode"]);
+                                model.phoneNumber = Convert.ToInt64(reader["phoneNumber"] == DBNull.Value ? default : reader["phoneNumber"]);
+                                model.email = reader["email"] == DBNull.Value ? default : reader["email"].ToString();
+                                Console.WriteLine("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}", model.firstName, model.lastName, model.address, model.city, model.state, model.zipcode, model.phoneNumber, model.email);
+                                count++;
+                            }
+                            Console.WriteLine("\nNumber of contacts present in \"{0}\" State => {1}", model.state, count);
+                            Console.Write("\nPress any key to continue...... ");
+                            Console.ReadLine();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
+                    Console.Clear();
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Select only give options");
+                    break;
+            }
+        }
     }
 }
