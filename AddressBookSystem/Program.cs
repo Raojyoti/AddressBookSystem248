@@ -36,6 +36,7 @@ namespace AddressBookSystem
                     "18.Update city by using firstname\n" +
                     "19.Retrieve contacts add at particular date in address book\n" +
                     "20.Retrieve Number of Contacts by city or state\n" +
+                    "21.Add new contacts in address book\n" +
                     "30.Exit\n");
                 int option=Convert.ToInt32(Console.ReadLine());
                 switch (option)
@@ -149,6 +150,23 @@ namespace AddressBookSystem
                         Console.Clear();
                         Console.WriteLine("Retrieve by city or state\n-------------------------------------------");
                         AddressRepository.RetrieveByCityOrState(contacts);
+                        break;
+                    case 21:
+                        Console.Clear();
+                        contacts.firstName = "Aakansha";
+                        contacts.lastName = "Singh";
+                        contacts.address = "Preet vihar colony";
+                        contacts.city = "Uttarakhand";
+                        contacts.state = "Dehra Dun";
+                        contacts.zipcode = 232513;
+                        contacts.phoneNumber = 7505982525;
+                        contacts.email = "aakan123@gmail.com";
+                        AddressRepository.AddNewContacts(contacts);
+                        Console.WriteLine("Retrieve all entites from database after add new contacts\n---------------------------------------------------------- ");
+                        AddressRepository.GetAllEntriesFromDB();
+                        Console.WriteLine("\nPress any key to continue...... ");
+                        Console.ReadLine();
+                        Console.Clear();
                         break;
                     case 30:
                         Console.Clear();

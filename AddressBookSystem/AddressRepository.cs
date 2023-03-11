@@ -219,5 +219,42 @@ namespace AddressBookSystem
                     break;
             }
         }
+
+        /// <summary>
+        /// UC20- Add new Contacts in AddressBook
+        /// </summary>
+        /// <param name="model"></param>
+        public static void AddNewContacts(Contacts model)
+        {
+            try
+            {
+                sqlConnection = new SqlConnection(connectionString);
+                SqlCommand command = new SqlCommand("dbo.spAddNewPerson", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                sqlConnection.Open();
+                command.Parameters.AddWithValue("@firstName", model.firstName);
+                command.Parameters.AddWithValue("@lastName", model.lastName);
+                command.Parameters.AddWithValue("@address", model.address);
+                command.Parameters.AddWithValue("@city", model.city);
+                command.Parameters.AddWithValue("@state", model.state);
+                command.Parameters.AddWithValue("@zipcode", model.zipcode);
+                command.Parameters.AddWithValue("@phoneNumber", model.phoneNumber);
+                command.Parameters.AddWithValue("@email", model.email);
+                int num = command.ExecuteNonQuery();
+                if (num != 0)
+                    Console.WriteLine("Contacts Added Successfully");
+                else
+                    Console.WriteLine("Something went Wrong");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
+
     }
 }
