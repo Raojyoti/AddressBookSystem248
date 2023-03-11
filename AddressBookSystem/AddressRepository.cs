@@ -256,5 +256,31 @@ namespace AddressBookSystem
             }
         }
 
+        /// <summary>
+        /// UC-21 Ability to Add Multiple contacts by using threads
+        /// </summary>
+
+        public void AddMultipleContactsInAddressBookWithThread(List<PersonContactsThread> personDataListThread)
+        {
+            personDataListThread.ForEach(employeeData =>
+            {
+                Task thread = new Task(() =>
+                {
+                    Console.WriteLine("Employee being added: " + employeeData.firstName);
+                    this.AddContacts(employeeData);
+                    Console.WriteLine("Employee added: " + employeeData.firstName);
+                });
+                thread.Start();
+            });
+            Console.WriteLine(this.contactsDetailsListThread.Count);
+        }
+        public void AddContacts(PersonContactsThread emp)
+        {
+            contactsDetailsListThread.Add(emp);
+        }
+        public int ContactsCount()
+        {
+            return contactsDetailsListThread.Count;
+        }
     }
 }
