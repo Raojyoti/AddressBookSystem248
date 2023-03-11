@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Reflection.Emit;
 
 namespace AddressBookSystem
 {
@@ -8,6 +10,7 @@ namespace AddressBookSystem
         {
             Console.Clear();
             List<Contacts> Person = new List<Contacts>();
+            Contacts contacts = new Contacts();
             Console.WriteLine("*****----Welcome to Address Book Program----*****\n");
             bool flag = true;
             while (flag)
@@ -29,9 +32,10 @@ namespace AddressBookSystem
                     "14.ReadOrWritePersonsContactIntoFileUsingFileIO\n" +
                     "15.ReadOrWritePersonsContactAsCSVFile\n" +
                     "16.ReadOrWritePersonsContactAsJsonFile\n" +
-                    "20.Exit\n");
+                    "17.Retrieve all entites from database\n" +
+                    "30.Exit\n");
                 int option=Convert.ToInt32(Console.ReadLine());
-                switch(option)
+                switch (option)
                 {
                     case 1:
                         AddressBookMain.AddContacts();
@@ -112,7 +116,14 @@ namespace AddressBookSystem
                         Console.ReadLine();
                         Console.Clear();
                         break;
-                    case 20:
+                    case 17:
+                        Console.Clear();
+                        Console.WriteLine("Retrieve all entites from database\n---------------------------------- ");
+                        AddressRepository.GetAllEntriesFromDB();
+                        Console.WriteLine("\nPress any key to continue...");
+                        Console.ReadLine();
+                        break;
+                    case 30:
                         Console.Clear();
                         Console.ReadLine();
                         break;

@@ -16,5 +16,7 @@ namespace AddressBookSystem
         public int zipcode { get; set; }
         public long phoneNumber { get; set; }
         public string email { get; set; }
+        public  DateTime StartDate { get; set; }
+     
     }
 }
